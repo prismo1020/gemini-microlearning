@@ -945,7 +945,11 @@ function updateUI() {
   } else if (current === TOTAL) {
     next.classList.remove('hidden');
     next.disabled = true;
+    next.style.opacity = '0.35';
+    next.style.cursor = 'not-allowed';
     next.textContent = 'Done';
+    next.id = 'done-btn';
+    next.onclick = finishCourse;
   } else {
     next.classList.remove('hidden');
     next.disabled = false;
@@ -960,6 +964,17 @@ function playAudio(n) {
   const a = new Audio(src);
   currentAudio = a;
   a.play().catch(() => {});
+  if (n === TOTAL) {
+    a.addEventListener('ended', function() {
+      var btn = document.getElementById('done-btn');
+      if (btn) {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+      }
+      if (window.scormComplete) window.scormComplete();
+    });
+  }
 }
 
 function copyText(id, btnId) {
@@ -1160,6 +1175,16 @@ function playIntro() {
     letsGo.style.cursor = 'pointer';
   });
 }
+
+function finishCourse() {
+  if (window.scormComplete) window.scormComplete();
+  // Close SCORM player window
+  if (window.parent && window.parent !== window) {
+    try { window.parent.close(); } catch(e) {}
+  }
+  window.close();
+}
+
 </script>
 </body>
 </html>
