@@ -99,6 +99,17 @@
     }
 
     /* â”€â”€ Bottom nav â”€â”€ */
+
+    /* Audio progress bar */
+    #audio-progress-wrap {
+      position: fixed; bottom: 60px; left: 0; right: 0; height: 3px;
+      background: rgba(255,255,255,0.08); z-index: 199;
+    }
+    #audio-progress-fill {
+      height: 100%; width: 0%; background: var(--blue);
+      transition: width 0.25s linear;
+    }
+
     #bottom-nav {
       position: fixed; bottom: 0; left: 0; right: 0; height: 60px;
       background: rgba(27,36,47,0.96); backdrop-filter: blur(12px);
@@ -885,6 +896,7 @@ Slide 8: Thank you / Reflection</div>
 
 </div><!-- /slides-container -->
 
+<div id="audio-progress-wrap"><div id="audio-progress-fill"></div></div>
 <div id="bottom-nav">
   <button class="nav-btn hidden" id="btn-back" onclick="prevSlide()">Back</button>
   <span id="slide-counter">1 / 15</span>
@@ -958,23 +970,43 @@ function updateUI() {
 }
 
 let currentAudio = null;
+let _audioRAF = null;
+
+function updateAudioBar(a) {
+  var fill = document.getElementById('audio-progress-fill');
+  if (!fill) return;
+  if (!a || a.paused || a.ended || !a.duration) {
+    fill.style.width = a && a.ended ? '100%' : '0%';
+    return;
+  }
+  fill.style.width = (a.currentTime / a.duration * 100) + '%';
+  _audioRAF = requestAnimationFrame(function() { updateAudioBar(a); });
+}
+
+function stopAudioBar() {
+  if (_audioRAF) { cancelAnimationFrame(_audioRAF); _audioRAF = null; }
+  var fill = document.getElementById('audio-progress-fill');
+  if (fill) fill.style.width = '0%';
+}
+
 function playAudio(n) {
   if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; currentAudio = null; }
+  stopAudioBar();
   const src = 'assets/audio/slide-' + String(n).padStart(2, '0') + '.mp3';
   const a = new Audio(src);
   currentAudio = a;
-  a.play().catch(() => {});
-  if (n === TOTAL) {
-    a.addEventListener('ended', function() {
+  a.addEventListener('canplay', function() { updateAudioBar(a); });
+  a.addEventListener('ended', function() {
+    stopAudioBar();
+    var fill = document.getElementById('audio-progress-fill');
+    if (fill) fill.style.width = '100%';
+    if (n === TOTAL) {
       var btn = document.getElementById('done-btn');
-      if (btn) {
-        btn.disabled = false;
-        btn.style.opacity = '1';
-        btn.style.cursor = 'pointer';
-      }
+      if (btn) { btn.disabled = false; btn.style.opacity = '1'; btn.style.cursor = 'pointer'; }
       if (window.scormComplete) window.scormComplete();
-    });
-  }
+    }
+  });
+  a.play().catch(() => {});
 }
 
 function copyText(id, btnId) {
