@@ -8,11 +8,11 @@ Serve this directory with any static HTTP server, or publish its root with GitHu
 
 ## What learners do
 
-1. Explore seven AI-tell examples with contextual feedback and optional hints.
-2. Customize the audience and decision in a reusable presentation prompt.
-3. Compare identical text in two illustrative designs and inspect a public template.
+1. Review six sentences: keep useful content, flag three AI-tell examples, and revise them beside contextual feedback.
+2. Customize the audience and decision, revise a flawed practice outline, and use the approved outline in the prompt.
+3. Inspect the actual public template and optionally compare locally selected screenshots of real generated outputs.
 4. Choose an account-appropriate Slides, Canvas, or manual workflow.
-5. Revise the draft, view local phrase-check feedback, and compare an example.
+5. Judge four sentences in an independent draft before seeing feedback, then revise it and compare an example.
 6. Download their own prompt, draft, facts, and checklist.
 
 AI tells are the activity's focus. They are patterns to question, not proof of authorship. Phrase checks are transparent local heuristics, not a detector or mastery assessment. All business figures in the exercise are fictional.
@@ -25,7 +25,7 @@ The remaining legacy audio and deck imagery are absent from the current course t
 
 ## Public template and comparisons
 
-[Professional Business / Salerio by SlidesCarnival](https://www.slidescarnival.com/template/salerio-free-presentation-template/1875) is the public reference. Learners obtain a copy from its provider and retain credits under the provider's terms. The lesson does not distribute the unmodified third-party template. The in-lesson comparison is an original illustration with identical text, not captured Gemini output or an exact reproduction of the template. The optional actual-cover image is attributed and loaded from the provider.
+[Professional Business / Salerio by SlidesCarnival](https://www.slidescarnival.com/template/salerio-free-presentation-template/1875) is the public reference. Learners obtain a copy from its provider and retain credits under the provider's terms. The lesson does not distribute the unmodified third-party template. The lesson displays the actual attributed template cover. It does not substitute staged mockups for generated outputs. An optional comparison workspace accepts two local screenshots, keeps them in page memory, and never uploads them. The independent challenge and all other learning activities need no external AI account.
 
 ## Workflow verification
 
@@ -40,7 +40,7 @@ Documentation was verified, not the UI of an authenticated Google account. Accou
 
 ## Learning design
 
-The performance context is a leadership decision about a fictional pilot. Learners inspect actual text, receive specific feedback, and revise a usable draft. This design is informed by [Michael Allen's CCAF framework](https://blog.alleninteractions.com/talking-sam-ccaf-adaptive-learning). It does not claim endorsement or certification.
+The performance context is a leadership decision about a fictional pilot. Guided practice mixes three useful sentences with three AI-tell examples; an em dash and a concrete three-item list are deliberately retained. Feedback distinguishes unnecessary flags from supported decisions. Edits appear in the source draft. A separate four-sentence task delays feedback until the learner submits the full set of decisions. Selecting every option or no options yields only two aligned decisions, rather than automatic completion. The final phrase checker reports patterns to inspect and does not validate meaning. This design is informed by [Michael Allen's CCAF framework](https://blog.alleninteractions.com/talking-sam-ccaf-adaptive-learning). It does not claim endorsement or certification.
 
 ## SCORM 1.2
 
@@ -50,8 +50,12 @@ The performance context is a leadership decision about a fictional pilot. Learne
 python3 build_scorm.py
 ```
 
-The manifest launches `index.html` as one SCO. The adapter initializes, bookmarks the chapter, resumes the chapter, and reports `completed` only when the learner selects **Finish practice**. It never reports a mastery score. Draft text and AI-tell selections stay in browser storage and are not sent to the LMS. Target-LMS acceptance testing is still required.
+The manifest launches `index.html` as one SCO. The adapter initializes, bookmarks the chapter, resumes the chapter, and reports `completed` only when the learner selects **Finish practice**. It never reports a mastery score. Draft text, sentence decisions, edits, and outline choices stay in browser storage and are not sent to the LMS. Target-LMS acceptance testing is still required.
 
 ## Accessibility and privacy
 
 Audio is optional, all phrase selections are keyboard-operable buttons, feedback uses live regions, and motion respects the system preference. The lesson supports narrow screens. Progress and the draft are stored on the current device if storage is available; Reset my practice clears that state. It makes no AI API calls. Google Fonts and the optional template preview are external resources; system fonts and the self-contained challenge remain usable if they fail.
+
+## Checks
+
+Run `node tests/check.cjs` for activity-logic and simulated LMS checks, then `python3 build_scorm.py` to rebuild the package. Browser QA covers wrong flags, inline edits, approved-outline propagation, local screenshots, independent review, original audio playback, saving, reset, kit download, and desktop/mobile layouts. Structural and software checks do not establish learning transfer.
