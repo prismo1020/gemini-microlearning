@@ -5,7 +5,7 @@ A short AI microlearning by Danielle Beram. Nine focused screens, one action at 
 ## The experience
 
 - Spot an empty “not just X” flourish.
-- Keep a useful em dash.
+- Replace an em dash with a clean sentence under the course’s no-em-dash house style.
 - Choose a concrete list over an abstract three-pack.
 - Choose a usable presentation brief.
 - Get the public template.
@@ -26,7 +26,7 @@ Five original recordings remain byte-for-byte unchanged: `slide-01.mp3`, `slide-
 
 ## Learning and privacy
 
-The practice uses fictional pilot facts. AI tells are editing clues, not proof of authorship; that context appears in the resources, rather than interrupting each activity. The live rewrite check uses local phrase patterns and a check for the supplied numerical comparison; it is not an AI detector or factual validator. It does not assign mastery scores. The exercise follows a challenge/action/feedback pattern informed by [Michael Allen's CCAF framework](https://blog.alleninteractions.com/talking-sam-ccaf-adaptive-learning).
+The practice uses fictional pilot facts. AI tells are editing clues, not proof of authorship; that context appears in the resources, rather than interrupting each activity. The no-em-dash rule is enforced in the practice, generation prompt, and take-home review prompt. It is an editorial preference, not proof of authorship. The live rewrite check uses local phrase patterns and a check for the supplied numerical comparison; it is not an AI detector or factual validator. It does not assign mastery scores. The exercise follows a challenge/action/feedback pattern informed by [Michael Allen's CCAF framework](https://blog.alleninteractions.com/talking-sam-ccaf-adaptive-learning).
 
 The draft and choices save only in this browser. No AI service receives them. Google Fonts and the attributed template preview are external resources; system fonts and the self-contained activities remain available if those resources fail.
 
